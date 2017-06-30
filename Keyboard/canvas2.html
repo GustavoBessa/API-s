@@ -1,0 +1,64 @@
+<html>
+<head>
+    <title></title>
+</head>
+<body onload="tempo();">
+<script type="text/javascript">
+var minuto = 1;
+var segundo1 = 1;
+var segundo2 = 0;
+var text = "";
+console.log(event);
+document.addEventListener("keydown", function(event) {
+document.getElementById('demo').innerHTML = `
+    &nbsp;&nbsp;&nbsp;
+    <b>which: ${event.which}</b>
+    <br>&nbsp;
+    <b>keyCode:</b> ${event.keyCode}
+    <br>&nbsp;&nbsp;&nbsp;
+    <b>shiftKey:</b> ${event.shiftKey}
+    </br>&nbsp;&nbsp;&nbsp;&nbsp;
+    <b>altKey:</b> ${event.altKey}
+    <br>&nbsp;&nbsp;&nbsp;
+    <b>ctrlKey:</b> ${event.ctrlKey}
+    <br>&nbsp;&nbsp;
+    <b>metaKey:</b> ${event.metaKey}
+  `;
+    var text = "";
+    var tecla;
+    var possible = "qwer";
+
+    for( var i=0; i < 1; i++ ){
+        text += possible.charAt(Math.floor(Math.random() * possible.length));}
+    document.getElementById('demo2').innerHTML = text+"///"+event.keyCode;
+if (te == event.keyCode) {
+    document.getElementById('demo4').innerHTML = "acertou";
+}
+});
+function tempo() {
+    var recursiva = function () {
+    segundo1 = segundo1 -1;
+    if (segundo1 < 0) {
+        segundo2 = segundo2 - 1;
+        segundo1 = 9;
+    }
+    if (segundo2 < 0) {
+        minuto = minuto - 1;
+        segundo2 = 5;
+    }
+    if (minuto < 0) {
+        document.getElementById('demo3').innerHTML= "O tempo acabou !";
+    }else{
+    document.getElementById('demo3').innerHTML= "Tempo:"+minuto+":"+segundo2+segundo1;
+    setTimeout(recursiva,1000);
+}}
+recursiva();
+}
+</script>
+<button onclick="makeid()">oisfkanskjf</button>
+<p id="demo"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+<p id="demo4"></p>
+</body>
+</html>

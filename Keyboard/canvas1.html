@@ -1,0 +1,192 @@
+<html>
+<body onload="obstaculos();tempo();">
+<script>
+var positionx = 0;
+var positiony = 0;
+var mortes = 0;
+var pontos = 0;
+var segundo1 = 0;
+var segundo2 = 0;
+var minuto = 0;
+
+//OBSTACULOS POSICIONAMENTO
+var obs1x = 100;
+var obs1y = 0;
+var obs2x = 220;
+var obs2y = 100;
+var obs3x = 340;
+var obs3y = 0;
+var obs4x = 460;
+var obs4y = 100;
+var fimx = 600;
+var fimy = 320;
+var margin1x = obs1x +"px";
+var margin1y = obs1y +"px";
+var margin2x = obs2x +"px";
+var margin2y = obs2y +"px";
+var margin3x = obs3x +"px";
+var margin3y = obs3y +"px";
+var margin4x = obs4x +"px";
+var margin4y = obs4y +"px";
+var marginfimx = fimx +"px";
+var marginfimy = fimy +"px";
+function obstaculos() {
+document.getElementById('obs1').style.marginLeft = margin1x;
+document.getElementById('obs1').style.marginTop = margin1y;
+document.getElementById('obs2').style.marginLeft = margin2x;
+document.getElementById('obs2').style.marginTop = margin2y;
+document.getElementById('obs3').style.marginLeft = margin3x;
+document.getElementById('obs3').style.marginTop = margin3y;
+document.getElementById('obs4').style.marginLeft = margin4x;
+document.getElementById('obs4').style.marginTop = margin4y;
+document.getElementById('final').style.marginLeft = marginfimx;
+document.getElementById('final').style.marginTop = marginfimy;
+}
+//FIM OBSTACULOS POSICIONAMENTO
+
+function tempo() {
+    var recursiva = function () {
+    segundo1 = segundo1 +1;
+    
+    if (segundo1 > 9) {
+        segundo2 = segundo2 +1;
+        segundo1 = 0;
+    }
+    
+    if (segundo2 > 5) {
+        if (segundo1 = 9) {
+        minuto = minuto + 1;
+        segundo1 = 0;
+        segundo2 = 0;
+    }
+}
+    document.getElementById('demo5').innerHTML= "Tempo:"+minuto+":"+segundo2+segundo1;
+    setTimeout(recursiva,1000);
+}
+recursiva();
+}
+
+console.log(event);
+document.addEventListener("keydown", function(event) {
+document.getElementById('demo').innerHTML = `
+    &nbsp;&nbsp;&nbsp;
+    <b>which: ${event.which}</b>
+    <br>&nbsp;
+    <b>keyCode:</b> ${event.keyCode}
+    <br>&nbsp;&nbsp;&nbsp;
+    <b>shiftKey:</b> ${event.shiftKey}
+    </br>&nbsp;&nbsp;&nbsp;&nbsp;
+    <b>altKey:</b> ${event.altKey}
+    <br>&nbsp;&nbsp;&nbsp;
+    <b>ctrlKey:</b> ${event.ctrlKey}
+    <br>&nbsp;&nbsp;
+    <b>metaKey:</b> ${event.metaKey}
+  `;
+
+//PLAYER
+if (positionx >=0) {
+    if ( positionx < 640) {
+if (event.keyCode == 39 || event.keyCode == 68) {
+    positionx = 40 + positionx;
+    var marginx = positionx+"px";
+}}}
+if (positionx >0) {
+if (event.keyCode == 37 || event.keyCode == 65) {
+    positionx = -40 + positionx;
+    var marginx = positionx+"px";
+}}
+
+if (positiony >=0) {
+    if ( positiony < 320) {
+if (event.keyCode == 40 || event.keyCode == 83) {
+    positiony = 40 + positiony;
+    var marginy = positiony+"px";
+}}}
+if (positiony >0) {
+if (event.keyCode == 38 || event.keyCode == 87) {
+    positiony = -40 + positiony;
+    var marginy = positiony+"px";
+}}
+//FIM PLAYER
+
+//OBSTACULOS KILL
+if (positionx == obs1x-20 && positiony <= 300 ||positionx == obs1x+20 && positiony <= 300) {
+        mortes = mortes +1;
+        positionx = 0;
+        positiony = 0;
+}
+if (positionx == obs2x-20 && positiony >= 80 ||positionx == obs2x+20 && positiony >= 80) {
+        mortes = mortes +1;       
+        positionx = 0;
+        positiony = 0;
+}
+if (positionx == obs3x-20 && positiony <= 300 ||positionx == obs3x+20 && positiony <= 300) {
+        mortes = mortes +1;       
+        positionx = 0;
+        positiony = 0;
+}
+if (positionx == obs4x-20 && positiony >= 80 ||positionx == obs4x+20 && positiony >= 80) {
+        mortes = mortes +1;       
+        positionx = 0;
+        positiony = 0;
+}
+//FIM OBSTACULOS KILL
+
+//VITORIA
+if (positionx == fimx && positiony == fimy) {
+    if (segundo2 >= 1) {
+        pontos = pontos + 10;
+    }else{
+        pontos = pontos + 20;
+}
+    positionx = 0;
+    positiony = 0;
+    segundo1 = 0;
+    segundo2 = 0;
+    minuto = 0;
+}
+//FIM VITORIA
+        var marginx = positionx+"px";
+        document.getElementById('demo2').innerHTML = "X = "+marginx;
+        document.getElementById('player').style.marginLeft = marginx;
+        var marginy = positiony+"px";
+        document.getElementById('demo3').innerHTML = "Y = "+marginy;
+        document.getElementById('player').style.marginTop = marginy;
+        document.getElementById('demo4').innerHTML = "Mortes = "+ mortes+ "<br>Pontos = "+pontos;
+});
+</script>
+<!--debug-->
+<p id="demo" hidden>&nbsp;&nbsp;&nbsp;
+    <b>which: ${event.which}</b>
+    <br>&nbsp;
+    <b>keyCode:</b> ${event.keyCode}
+    <br>&nbsp;&nbsp;&nbsp;
+    <b>shiftKey:</b> ${event.shiftKey}
+    </br>&nbsp;&nbsp;&nbsp;&nbsp;
+    <b>altKey:</b> ${event.altKey}
+    <br>&nbsp;&nbsp;&nbsp;
+    <b>ctrlKey:</b> ${event.ctrlKey}
+    <br>&nbsp;&nbsp;
+    <b>metaKey:</b> ${event.metaKey}</p>
+<p id="demo2" hidden>X = 0%</p>
+<p id="demo3" hidden>Y = 0%</p>
+<!--FIM debug-->
+
+<p id="demo4">Mortes = 0<br>Pontos = 0</p>
+<p id="demo5">TEMPO</p>
+<ul>Menu:
+    <li><a href="canvas1.html">canvas1</a></li>
+    <li><a href="canvas2.html">canvas2</a></li>
+</ul>
+
+<div id="canvas1" style="background: gray; position: fixed; width: 700px; height:400px;">
+<div id="player" style="background:red; width:50px; height:50px; float: left;"></div>
+<div id="obs1" style="background:black; width:50px; height: 300px; position: fixed;"></div>
+<div id="obs2" style="background:black; width:50px; height: 300px; position: fixed;"></div>
+<div id="obs3" style="background:black; width:50px; height: 300px; position: fixed;"></div>
+<div id="obs4" style="background:black; width:50px; height: 300px; position: fixed;"></div>
+<div id="final" style="background:green; width:50px; height: 50px; position: fixed;"></div>
+
+</div>
+</body>
+</html>

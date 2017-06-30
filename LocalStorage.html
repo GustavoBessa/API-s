@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function load() {
+		if (localStorage.pass == undefined) {
+			document.getElementById("result1").innerHTML = "você ainda não possui uma senha!";
+		}else{
+			document.getElementById("result1").innerHTML = "Faça o login!";
+		}
+        if (localStorage.passWord !== undefined) {
+            document.getElementById("result2").innerHTML = "Seu status é: online";
+        } else {
+            document.getElementById("result2").innerHTML = "Seu status é: offline";
+        }
+		}
+function pass() {
+            localStorage.pass = document.getElementById("pass").value;
+        if (localStorage.pass !== undefined) {
+            document.getElementById("result1").innerHTML = "Sua senha é: " + localStorage.pass + ".";
+        } else {
+            localStorage.pass = undefined;
+        }
+}
+function verificar() {
+            localStorage.passWord = document.getElementById("pass_teste").value;
+            if (localStorage.passWord == localStorage.pass) {
+            	localStorage.status = "online";
+            } else {
+            	localStorage.status = "offline";
+            	alert('Senha incorreta');	
+        	}
+        document.getElementById("result2").innerHTML = "Seu status é: " + localStorage.status + ".";
+}
+</script>
+</head>
+<body onload="load()">
+<h1>Defina uma senha!</h1>
+<input type="password" name="pass" id="pass"><p>
+<a onclick="pass()">Enviar !</a></p>
+<div id="result1"></div>
+
+<hr>
+
+<h1>Digite sua senha para entrar !</h1>
+<input type="password" name="pass_teste" id="pass_teste">
+<p><a onclick="verificar()">Verificar !</a></p>
+<div id="result2"></div>
+</body>
+</html>
